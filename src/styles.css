@@ -63,6 +63,9 @@
   border-radius: var(--sonar-radius);
   padding: 1.1rem 1.15rem;
   color: var(--sonar-fg);
+  /* Allow the panel to shrink below its content's intrinsic width when it is a
+     grid/flex item, so responsive charts inside can measure the true width. */
+  min-width: 0;
 }
 .sonar-panel__head {
   display: flex;

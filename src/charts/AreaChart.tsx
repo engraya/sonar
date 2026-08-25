@@ -89,8 +89,10 @@ export function AreaChart({
     <div ref={ref} style={{ position: "relative", width: "100%" }}>
       <svg
         ref={svgRef}
-        width={width}
-        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        width="100%"
+        preserveAspectRatio="none"
+        style={{ display: "block", height: "auto", maxWidth: "100%" }}
         role="img"
         aria-label={summary}
         onPointerMove={onMove}
