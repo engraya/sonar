@@ -1,7 +1,7 @@
 {
   "name": "@engraya/sonar",
-  "version": "0.2.0",
-  "description": "Accessibility-first React dashboard kit — zero-dependency SVG charts where every chart ships an aria summary and a hidden data table, plus KPI tiles, grids and filter primitives. Themeable via CSS variables; pairs with @engraya/fathom-ui.",
+  "version": "0.2.1",
+  "description": "Accessibility-first React dashboard kit \u2014 zero-dependency SVG charts where every chart ships an aria summary and a hidden data table, plus KPI tiles, grids and filter primitives. Themeable via CSS variables; pairs with @engraya/fathom-ui.",
   "license": "MIT",
   "author": "Ahmad Yakubu Ahmad",
   "type": "module",
@@ -46,8 +46,8 @@
     "url": "git+https://github.com/engraya/sonar.git"
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "build": "node api.js && tsup",
+    "dev": "node api.js && tsup --watch",
     "prepublishOnly": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
