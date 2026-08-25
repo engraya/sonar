@@ -1,0 +1,313 @@
+/* Sonar design tokens + component styles.
+ *
+ * Tokens fall back to Fathom UI's (--fathom-*) when that stylesheet is present,
+ * so the two libraries share one theming contract; otherwise Sonar's own
+ * defaults apply. Theme follows the OS by default and can be forced with
+ * data-theme="light" | "dark" on the root element.
+ */
+
+:root {
+  --sonar-bg: var(--fathom-bg, #ffffff);
+  --sonar-surface: var(--fathom-surface, #f7f8fa);
+  --sonar-border: var(--fathom-border, #e4e7ec);
+  --sonar-fg: var(--fathom-fg, #14161a);
+  --sonar-muted: var(--fathom-fg-muted, #667085);
+  --sonar-primary: var(--fathom-primary, #4f46e5);
+  --sonar-primary-fg: var(--fathom-primary-fg, #ffffff);
+  --sonar-radius: var(--fathom-radius, 0.625rem);
+  --sonar-ring: var(--fathom-ring, #4f46e5);
+  --sonar-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+
+  --sonar-grid: color-mix(in srgb, var(--sonar-fg) 10%, transparent);
+  --sonar-axis: var(--sonar-muted);
+
+  --sonar-pos: #16a34a;
+  --sonar-neg: #dc2626;
+
+  --sonar-series-1: #4f46e5;
+  --sonar-series-2: #14b8a6;
+  --sonar-series-3: #f59e0b;
+  --sonar-series-4: #ec4899;
+  --sonar-series-5: #0ea5e9;
+  --sonar-series-6: #84cc16;
+  --sonar-series-7: #a855f7;
+  --sonar-series-8: #ef4444;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sonar-bg: var(--fathom-bg, #0f1115);
+    --sonar-surface: var(--fathom-surface, #181b21);
+    --sonar-border: var(--fathom-border, #2a2f39);
+    --sonar-fg: var(--fathom-fg, #e6e8ec);
+    --sonar-muted: var(--fathom-fg-muted, #98a2b3);
+    --sonar-primary: var(--fathom-primary, #818cf8);
+    --sonar-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme="dark"] {
+  --sonar-bg: var(--fathom-bg, #0f1115);
+  --sonar-surface: var(--fathom-surface, #181b21);
+  --sonar-border: var(--fathom-border, #2a2f39);
+  --sonar-fg: var(--fathom-fg, #e6e8ec);
+  --sonar-muted: var(--fathom-fg-muted, #98a2b3);
+  --sonar-primary: var(--fathom-primary, #818cf8);
+  --sonar-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Panel ---- */
+.sonar-panel {
+  background: var(--sonar-surface);
+  border: 1px solid var(--sonar-border);
+  border-radius: var(--sonar-radius);
+  padding: 1.1rem 1.15rem;
+  color: var(--sonar-fg);
+}
+.sonar-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+.sonar-panel__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0;
+}
+.sonar-panel__subtitle {
+  font-size: 0.75rem;
+  color: var(--sonar-muted);
+  margin: 0.15rem 0 0;
+}
+
+/* ---- StatGrid ---- */
+.sonar-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(var(--sonar-grid-min, 1), minmax(0, 1fr));
+}
+@media (min-width: 640px) {
+  .sonar-grid {
+    grid-template-columns: repeat(var(--sonar-grid-sm, 3), minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .sonar-grid {
+    grid-template-columns: repeat(var(--sonar-grid-lg, 4), minmax(0, 1fr));
+  }
+}
+
+/* ---- KpiTile ---- */
+.sonar-kpi {
+  background: var(--sonar-surface);
+  border: 1px solid var(--sonar-border);
+  border-radius: var(--sonar-radius);
+  padding: 0.9rem 1rem;
+}
+.sonar-kpi__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.sonar-kpi__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sonar-muted);
+  margin: 0;
+}
+.sonar-kpi__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+.sonar-kpi__value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--sonar-fg);
+}
+.sonar-kpi__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.sonar-kpi__delta--pos {
+  color: var(--sonar-pos);
+  background: color-mix(in srgb, var(--sonar-pos) 14%, transparent);
+}
+.sonar-kpi__delta--neg {
+  color: var(--sonar-neg);
+  background: color-mix(in srgb, var(--sonar-neg) 14%, transparent);
+}
+.sonar-kpi__delta--flat {
+  color: var(--sonar-muted);
+  background: color-mix(in srgb, var(--sonar-muted) 16%, transparent);
+}
+
+/* ---- SegmentedControl ---- */
+.sonar-segmented {
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+  border: 1px solid var(--sonar-border);
+  border-radius: var(--sonar-radius);
+  background: var(--sonar-surface);
+}
+.sonar-segmented__btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--sonar-muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.25rem 0.7rem;
+  border-radius: calc(var(--sonar-radius) - 2px);
+  cursor: pointer;
+}
+.sonar-segmented__btn:hover {
+  color: var(--sonar-fg);
+}
+.sonar-segmented__btn[aria-pressed="true"] {
+  background: var(--sonar-primary);
+  color: var(--sonar-primary-fg);
+}
+.sonar-segmented__btn:focus-visible {
+  outline: 2px solid var(--sonar-ring);
+  outline-offset: 1px;
+}
+
+/* ---- Legend & bar rows ---- */
+.sonar-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+.sonar-legend__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--sonar-fg);
+}
+.sonar-legend__swatch {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 999px;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+.sonar-legend__value {
+  color: var(--sonar-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sonar-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.sonar-bar {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(6rem, 9rem) 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--sonar-radius);
+  cursor: pointer;
+  text-align: left;
+  color: var(--sonar-fg);
+  font: inherit;
+}
+.sonar-bar:hover,
+.sonar-bar[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--sonar-fg) 5%, transparent);
+}
+.sonar-bar:focus-visible {
+  outline: 2px solid var(--sonar-ring);
+  outline-offset: 1px;
+}
+.sonar-bar__label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sonar-bar__track {
+  height: 0.75rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--sonar-border) 60%, transparent);
+}
+.sonar-bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--sonar-primary);
+  transition: width 0.5s ease;
+}
+.sonar-bar__value {
+  font-size: 0.8125rem;
+  color: var(--sonar-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Tooltip ---- */
+.sonar-tooltip {
+  position: absolute;
+  z-index: 10;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: var(--sonar-surface);
+  border: 1px solid var(--sonar-border);
+  border-radius: var(--sonar-radius);
+  box-shadow: var(--sonar-shadow);
+  padding: 0.4rem 0.6rem;
+  font-size: 0.75rem;
+}
+.sonar-tooltip__title {
+  font-weight: 600;
+  color: var(--sonar-fg);
+}
+.sonar-tooltip__value {
+  color: var(--sonar-muted);
+}
+
+.sonar-empty {
+  text-align: center;
+  color: var(--sonar-muted);
+  font-size: 0.875rem;
+  padding: 2rem 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sonar-bar__fill {
+    transition: none;
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "name": "@engraya/sonar",
+  "version": "0.1.0",
+  "description": "Accessibility-first React dashboard kit — zero-dependency SVG charts where every chart ships an aria summary and a hidden data table, plus KPI tiles, grids and filter primitives. Themeable via CSS variables; pairs with @engraya/fathom-ui.",
+  "license": "MIT",
+  "author": "Ahmad Yakubu Ahmad",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "keywords": [
+    "react",
+    "charts",
+    "dashboard",
+    "svg",
+    "accessibility",
+    "a11y",
+    "data-visualization",
+    "kpi",
+    "sparkline"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engraya/sonar.git"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "release": "changeset publish"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "@engraya/fathom-ui": ">=0.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@engraya/fathom-ui": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.9",
+    "@storybook/addon-a11y": "^8.4.7",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/react-vite": "^8.4.7",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest-axe": "^3.5.9",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^2.1.8",
+    "axe-core": "^4.10.2",
+    "jest-axe": "^9.0.0",
+    "jsdom": "^25.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "storybook": "^8.4.7",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
