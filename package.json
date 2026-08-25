@@ -1,6 +1,6 @@
 {
   "name": "@engraya/sonar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Accessibility-first React dashboard kit — zero-dependency SVG charts where every chart ships an aria summary and a hidden data table, plus KPI tiles, grids and filter primitives. Themeable via CSS variables; pairs with @engraya/fathom-ui.",
   "license": "MIT",
   "author": "Ahmad Yakubu Ahmad",
