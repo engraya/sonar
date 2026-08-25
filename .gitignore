@@ -2,7 +2,10 @@ node_modules/
 dist/
 storybook-static/
 coverage/
+temp_auto_push.bat
 *.log
 .env
 .env.*
 .DS_Store
+.gitignore
+branch_structure.json
